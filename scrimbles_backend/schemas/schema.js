@@ -14,5 +14,5 @@ export default createSchema({
   types: schemaTypes.concat([
     /* Your types here! */
     user
-  ]),
+  ])
 })
