@@ -8,6 +8,13 @@ const isNotActiveStyle =
 const isActiveStyle =
   'flex items-center px-5 gap-3 font-extrabold border-r-2 border-black transition-all duration-200 ease-in-out capitalize'
 
+const categories = [
+  { name: 'Tattoos' },
+  { name: 'Food' },
+  { name: 'Technology' },
+  { name: 'Illustrations' }
+]
+
 const Sidebar = ({ user, closeToggle }) => {
   const handleCloseSidebar = () => {
     if (closeToggle) closeToggle(false)
@@ -27,10 +34,25 @@ const Sidebar = ({ user, closeToggle }) => {
             to='/'
             className={({ isActive }) =>
               isActive ? isActiveStyle : isNotActiveStyle
-            }>
-              <RiHomeFill />
-              Home
+            }
+            onClick={handleCloseSidebar}>
+            <RiHomeFill />
+            Home
+          </NavLink>
+          <h3 className='mt-2 px-5 text-base 2x1:text-xl'>
+            Discover Categories
+          </h3>
+          {categories.slice(0, categories.length).map((category) => (
+            <NavLink
+              to={`/category/${category.name}`}
+              className={({ isActive }) =>
+                isActive ? isActiveStyle : isNotActiveStyle
+              }
+              onClick={handleCloseSidebar}
+              key={category.name}>
+              {category.name}
             </NavLink>
+          ))}
         </div>
       </div>
     </div>
