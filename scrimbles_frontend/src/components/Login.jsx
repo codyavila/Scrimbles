@@ -9,6 +9,9 @@ const Login = () => {
   const navigate = useNavigate()
   const createOrGetUser = async (response, addUser) => {
     const decoded = jwt_decode(response.credential)
+    console.log(decoded)
+
+    localStorage.setItem('user', JSON.stringify(decoded))
 
     const { name, picture, sub } = decoded
 
@@ -19,11 +22,9 @@ const Login = () => {
       image: picture
     }
 
-    client.createIfNotExists(doc)
-      .then(() => {
-        navigate('/', { replace: true })
-      })
-
+    client.createIfNotExists(doc).then(() => {
+      navigate('/', { replace: true })
+    })
   }
 
   return (
@@ -39,6 +40,7 @@ const Login = () => {
           <GoogleLogin
             onSuccess={(response) => createOrGetUser(response)}
             onError={() => console.log(console.log('Error'))}
+            cookiePolicy='single_host_origin'
           />
         </div>
       </div>
