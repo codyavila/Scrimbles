@@ -1,9 +1,31 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FcGoogle } from 'react-icons/fc'
 import { GoogleLogin } from '@react-oauth/google'
+import jwt_decode from 'jwt-decode'
+
+import { client } from '../client'
 
 const Login = () => {
+  const navigate = useNavigate()
+  const createOrGetUser = async (response, addUser) => {
+    const decoded = jwt_decode(response.credential)
+
+    const { name, picture, sub } = decoded
+
+    const doc = {
+      _id: sub,
+      _type: 'user',
+      userName: name,
+      image: picture
+    }
+
+    client.createIfNotExists(doc)
+      .then(() => {
+        navigate('/', { replace: true })
+      })
+
+  }
+
   return (
     <div className='flex justify-start items-center flex-col h-screen'>
       <div className='relative w-full h-full'></div>
@@ -15,7 +37,7 @@ const Login = () => {
 
         <div className='shadow-2x1'>
           <GoogleLogin
-            onSuccess={(response) => console.log(response)}
+            onSuccess={(response) => createOrGetUser(response)}
             onError={() => console.log(console.log('Error'))}
           />
         </div>
