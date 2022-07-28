@@ -11,7 +11,7 @@ const App = () => {
     <GoogleOAuthProvider clientId={process.env.REACT_APP_PUBLIC_GOOGLE_API_TOKEN}>
       <Routes>
         <Route path='login' element={<Login />} />
-        <Route path='/' element={<Home />} />
+        <Route path='/*' element={<Home />} />
       </Routes>
     </GoogleOAuthProvider>
   )
