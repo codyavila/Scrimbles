@@ -3,7 +3,8 @@ import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import { MdDownloadForOffline } from 'react-icons/md'
 import { AiTwotoneDelete } from 'react-icons/ai'
-import { BsFillArrowUp, BsFillArrowUpRightCircleFill } from 'react-icons/bs'
+import { BsFillArrowUpRightCircleFill } from 'react-icons/bs'
+import Skeleton from 'react-loading-skeleton'
 
 import { client, urlFor } from '../client'
 import { fetchUser } from '../utils/fetchUser'
@@ -124,6 +125,7 @@ export const Scrimbl = ({
         <img
           className='w-8 h-8 rounded-full object-cover'
           src={postedBy?.image}
+          referrerPolicy='no-referrer'
           alt={`Posted by: ${postedBy?.userName}`}
         />
         <p className='font-semibold capitalize'>{postedBy?.userName}</p>

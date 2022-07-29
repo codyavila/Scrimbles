@@ -7,18 +7,23 @@ import MasonryLayout from './MasonryLayout.jsx'
 import { feedQuery, searchQuery } from '../utils/data'
 
 const Feed = () => {
+  const [loading, setLoading] = useState(false)
   const { categoryId } = useParams()
   const [scrimbls, setScrimbls] = useState(null)
 
   useEffect(() => {
+    setLoading(true)
+
     if (categoryId) {
       const query = searchQuery(categoryId)
       client.fetch(query).then((data) => {
         setScrimbls(data)
+        setLoading(false)
       })
     } else {
       client.fetch(feedQuery).then((data) => {
         setScrimbls(data)
+        setLoading(true)
       })
     }
   }, [categoryId])
