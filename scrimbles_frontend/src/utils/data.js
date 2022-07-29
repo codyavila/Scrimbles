@@ -30,7 +30,7 @@ export const searchQuery = (searchTerm) => {
   return query
 }
 
-export const feedQuery = `*[_type == 'scrimbl'] | order(_createAt desc)] {
+export const feedQuery = `*[_type == 'scrimbl'] | order(_createAt desc) {
   image {
             asset -> {
                 url
@@ -38,7 +38,8 @@ export const feedQuery = `*[_type == 'scrimbl'] | order(_createAt desc)] {
         },
         _id,
         destination,
-        postedBy => {
+        title,
+        postedBy -> {
             _id,
             userName,
             image
