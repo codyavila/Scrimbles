@@ -51,7 +51,7 @@ const CreateScrimbl = ({ user }) => {
   }
 
   const saveScrimbl = () => {
-    if (title && about && destination && imageAsset?._id && category) {
+    if (title && imageAsset?._id && category) {
       const doc = {
         _type: 'scrimbl',
         title,

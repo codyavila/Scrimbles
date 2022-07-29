@@ -8,6 +8,7 @@ import Skeleton from 'react-loading-skeleton'
 
 import { client, urlFor } from '../client'
 import { fetchUser } from '../utils/fetchUser'
+import { feedQuery } from '../utils/data'
 
 export const Scrimbl = ({
   scrimbl: { title, postedBy, image, _id, destination, save }
@@ -42,6 +43,11 @@ export const Scrimbl = ({
         })
     }
   }
+
+  const saved = client.listen(feedQuery).subscribe((update) => {
+    const saves = update.result
+    console.log(saves)
+  })
 
   const deleteScrimbl = (id) => {
     client.delete(id).then(() => {
