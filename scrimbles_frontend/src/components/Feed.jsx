@@ -9,22 +9,25 @@ import { feedQuery, searchQuery } from '../utils/data'
 
 const Feed = () => {
   const { categoryId } = useParams()
-  const [scrimbl, setScrimbl] = useState(null)
+  const [scrimbls, setScrimbls] = useState(null)
 
   useEffect(() => {
     if (categoryId) {
       const query = searchQuery(categoryId)
       client.fetch(query).then((data) => {
-        setScrimbl(data)
+        setScrimbls(data)
       })
     } else {
       client.fetch(feedQuery).then((data) => {
-        setScrimbl(data)
+        setScrimbls(data)
       })
     }
   }, [categoryId])
 
-  return <div>Feed</div>
+  return( <div>
+    {scrimbls && <MasontryLayout scrimbls={scrimbls}/>}
+  </div>
+  )
 }
 
 export default Feed
