@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { AiOutlineCloudUpload } from 'react-icons/ai'
+import { MdDelete } from 'react-icons/md'
+import { useNavigate } from 'react-router-dom'
 
-const CreateScrimbl = () => {
+import { client } from '../client'
+
+const CreateScrimbl = ({ user }) => {
   return (
     <div>CreateScrimbl</div>
   )
