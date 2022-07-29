@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom'
 import { client } from '../client'
 import MasonryLayout from './MasonryLayout.jsx'
 // import Spinner from './Spinner'
-import { Skeleton } from 'react-loading-skeleton'
 import { feedQuery, searchQuery } from '../utils/data'
 
 const Feed = () => {

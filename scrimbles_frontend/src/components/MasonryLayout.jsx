@@ -2,6 +2,8 @@ import React from 'react'
 import Masonry from 'react-masonry-css'
 import Scrimbl from './Scrimbl'
 
+import { Skeleton } from 'react-loading-skeleton'
+
 const breakpointObj = {
   default: 4,
   3000: 6,
@@ -12,16 +14,16 @@ const breakpointObj = {
 }
 
 const MasonryLayout = ({ scrimbls }) => {
-    console.log(scrimbls)
+  console.log(scrimbls)
   return (
     <div>
-      <Masonry
-        className='flex animate-slide-fwd'
-        breakpointobjcols={breakpointObj}>
-        {scrimbls?.map((scrimbl) => (
-          <Scrimbl key={scrimbl._id} scrimbl={scrimbl} className='w-max' />
-        ))}
-      </Masonry>
+        <Masonry
+          className='flex animate-slide-fwd'
+          breakpointobjcols={breakpointObj}>
+          {scrimbls?.map((scrimbl) => (
+            <Scrimbl key={scrimbl._id} scrimbl={scrimbl} className='w-max' />
+          ))}
+        </Masonry>
     </div>
   )
 }
